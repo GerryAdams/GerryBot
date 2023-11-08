@@ -9,7 +9,7 @@ import mcstatus
 from mcstatus import JavaServer
 from discord.gateway import WebSocketClosure
 
-mcserverip = 'rytekin.aternos.me'
+mcserverip = 'mc.finneganphoto.ie'
 
 class MinecraftWho(commands.Cog):
     def __init__(self, bot):

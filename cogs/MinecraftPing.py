@@ -5,7 +5,7 @@ from discord.utils import get
 from mcstatus import JavaServer
 from asyncio import sleep
 
-mcserverip = 'rytekin.aternos.me'
+mcserverip = 'mc.finneganphoto.ie'
 
 class MinecraftPing(commands.Cog):
     def __init__(self, bot):
@@ -35,7 +35,7 @@ class MinecraftPing(commands.Cog):
             print (Status)
             await sleep(100)
         except (ConnectionError, TimeoutError, WebSocketClosure, Exception) as e:
-            await self.bot.change_presence(activity=discord.Game(name="rytekin.aternos.me"))
+            await self.bot.change_presence(activity=discord.Game(name=mcserverip))
             print("Server Online")
             guild1 = self.bot.get_guild(398575354090094592)
             if discord.utils.get(guild1.text_channels, name='minecraft-server'):
