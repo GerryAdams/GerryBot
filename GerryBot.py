@@ -1,6 +1,7 @@
 import os
 from os import sep
-from dotenv import load_dotenv
+from dotenv import load_dotenv, set_key
+from pathlib import Path
 import asyncio
 import discord
 from discord import client
@@ -15,7 +16,13 @@ from discord.ext.commands import Bot
 
 description = '''Gerry.'''
 
-load_dotenv()
+disctoke = input('Discord Token: ')
+
+env_file_path = Path("DISCORD_TOKEN.env")
+set_key(dotenv_path=env_file_path, key_to_set="DISCORD_TOKEN", value_to_set=disctoke)
+
+load_dotenv(dotenv_path=env_file_path)
+
 intents = discord.Intents.all()
 intents.members = True
 client = discord.Client(intents=intents)
@@ -101,7 +108,7 @@ async def on_ready():
 async def main():
     async with bot:
         await load_extensions()
-        await bot.start('ODEwMTY0MTM0NjgzMDgyNzUy.G0I8jg.xu7iGBklMBhs9HUO5pHYWOZuWbFBXKbFFV8M-M')
+        await bot.start(TOKEN)
 
 
 asyncio.run(main())
