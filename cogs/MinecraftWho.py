@@ -20,13 +20,17 @@ class MinecraftWho(commands.Cog):
 
     @commands.command()
     async def minecraft(self, ctx):
+        print('minecraft')
         try:
             server = JavaServer.lookup(mcserverip)
-            query = server.query()
+            print(1)
             status = server.status()
-            description = str(status.players.online)
-            ping = str(status.latency) + "ms"
-            players = str(query.players.names)
+            print(2)
+            query = server.query()
+            print(3)
+            description = str(status.players.online())
+            ping = str(status.latency()) + "ms"
+            players = str(query.players.names())
             print("The server has the following players online: {0}".format(", ".join(query.players.names)))
 
             embed = discord.Embed(title="Minebot", colour=discord.Colour(0x3e038c))
@@ -36,8 +40,10 @@ class MinecraftWho(commands.Cog):
             embed.set_thumbnail(url="https://i.imgur.com/z9llKEK.jpg")
 
             await ctx.send(embed=embed)
+
         except (ConnectionError, TimeoutError, WebSocketClosure, Exception) as e:
             await ctx.send("Server is offline.")
+            print(e)
 
 ##    @commands.command()
 ##    async def map(self, ctx):

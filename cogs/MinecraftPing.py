@@ -28,13 +28,6 @@ class MinecraftPing(commands.Cog):
             await self.bot.change_presence(activity=discord.Game(name="Minecraft with {0} players.".format(status.players.online)))
             if status.players.online == 1:
                 await self.bot.change_presence(activity=discord.Game(name="Minecraft with {0}.".format(str(status.players.names))))
-            if status.players.online == 0:
-                await self.bot.change_presence(activity=discord.Game(name="?server to request start."))
-            print('server offline')
-            Status = 0
-            print (Status)
-            await sleep(100)
-        except (ConnectionError, TimeoutError, WebSocketClosure, Exception) as e:
             await self.bot.change_presence(activity=discord.Game(name=mcserverip))
             print("Server Online")
             guild1 = self.bot.get_guild(398575354090094592)
@@ -42,10 +35,15 @@ class MinecraftPing(commands.Cog):
                 channel = get(guild1.text_channels, name='minecraft-server')
                 await channel.delete()
             Status = 1
-            print(e)
             print (Status)
-            await sleep(50)
-            
+            await sleep(5)
+
+        except (ConnectionError, TimeoutError, WebSocketClosure, Exception) as e:
+            print('Server offline')
+            Status = 0
+            print (Status)
+            await sleep(10)
+                
     
 
 

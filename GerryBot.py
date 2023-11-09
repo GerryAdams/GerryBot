@@ -16,10 +16,16 @@ from discord.ext.commands import Bot
 
 description = '''Gerry.'''
 
-disctoke = input('Discord Token: ')
 
+disctoke = input('Discord Token: ')
 env_file_path = Path("DISCORD_TOKEN.env")
-set_key(dotenv_path=env_file_path, key_to_set="DISCORD_TOKEN", value_to_set=disctoke)
+
+if disctoke != '':
+    set_key(dotenv_path=env_file_path, key_to_set="DISCORD_TOKEN", value_to_set=disctoke)
+else:
+    print('TOKEN Unchanged')
+
+print ('-' * 10)
 
 load_dotenv(dotenv_path=env_file_path)
 
@@ -108,6 +114,7 @@ async def on_ready():
 async def main():
     async with bot:
         await load_extensions()
+        print(TOKEN)
         await bot.start(TOKEN)
 
 
